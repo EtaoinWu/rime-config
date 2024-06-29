@@ -5,4 +5,10 @@ patch:
   switches/@3/reset: 0
   key_binder/bindings/+:
     - {accept: Tab, send_sequence: "{End};", when: composing}
-
+  aux_code:
+    avoid_prefixes: # 对应 /recognizer/patterns
+      - "V" # symbols
+      - "uU" # 部件拆字
+      - "U" # Unicode
+      - "R" # 数字金额
+      - "N" # 农历

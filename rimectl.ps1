@@ -77,7 +77,9 @@ if ($Gitignore) {
   # }
   foreach ($f in $ime_files_map.GetEnumerator()) {
     $gitignore_content += "`n# Generated from $($f.Key)"
-    $gitignore_content += (($f.Value) -join "`n")
+    foreach ($file in $f.Value) {
+      $gitignore_content += "/$file"
+    }
   }
   Set-Content -Path .\.gitignore -Value $gitignore_content
   Write-Output "Generated .gitignore"
