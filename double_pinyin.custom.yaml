@@ -1,0 +1,8 @@
+patch:
+  speller/alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA`;
+  engine/filters/+:
+    - lua_filter@*aux_code@ZRM_Aux-code_4.3
+  switches/@3/reset: 0
+  key_binder/bindings/+:
+    - {accept: Tab, send_sequence: "{End};", when: composing}
+

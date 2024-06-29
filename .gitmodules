@@ -1,0 +1,12 @@
+[submodule "rime-ice"]
+	path = rime-ice
+	url = https://github.com/iDvel/rime-ice
+	shallow = true
+[submodule "rime-moqi"]
+	path = rime-moqi
+	url = https://github.com/gaboolic/rime-shuangpin-fuzhuma.git
+	shallow = true
+[submodule "rime-lua-aux-code"]
+	path = rime-lua-aux-code
+	url = https://github.com/HowcanoeWang/rime-lua-aux-code.git
+	shallow = true

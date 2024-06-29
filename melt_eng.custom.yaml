@@ -1,0 +1,3 @@
+patch:
+  speller/algebra:
+    __include: algebra_double_pinyin

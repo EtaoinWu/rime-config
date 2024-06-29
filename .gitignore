@@ -1,0 +1,54 @@
+build/
+*.old
+*.userdb
+
+user.yaml
+
+# Generated from rime-ice
+default.yaml
+double_pinyin.schema.yaml
+melt_eng.dict.yaml
+melt_eng.schema.yaml
+radical_pinyin.dict.yaml
+radical_pinyin.schema.yaml
+rime_ice.dict.yaml
+rime_ice.schema.yaml
+rime.lua
+symbols_caps_v.yaml
+symbols_v.yaml
+weasel.yaml
+cn_dicts
+en_dicts
+lua
+opencc
+
+# Generated from rime-moqi
+moqi_zrm.schema.yaml
+moqi.yaml
+moqi.extended.dict.yaml
+reverse_moqima.schema.yaml
+reverse_moqima.dict.yaml
+radical_flypy.schema.yaml
+radical_flypy.dict.yaml
+zrlf.schema.yaml
+zrlf.dict.yaml
+emoji.schema.yaml
+emoji.dict.yaml
+easy_en.schema.yaml
+easy_en.dict.yaml
+jp_sela.schema.yaml
+jp_sela.dict.yaml
+moqi_big.schema.yaml
+moqi_big.extended.dict.yaml
+cn_dicts_common
+cn_dicts_moqi
+custom_phrase
+lua
+opencc
+
+# Generated from rime-lua-aux-code
+lua
+
+# Generated from patch
+lua
+rime_ice.dict.yaml
