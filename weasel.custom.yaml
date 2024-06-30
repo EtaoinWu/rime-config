@@ -1,9 +1,47 @@
 patch:
   "style/+":
+    __include: themes/independent_thin
     color_scheme: pastel_dark
     antialias_mode: cleartype
-    horizontal: false
     font_point: 13
+
+  "preset_color_schemes/pastel_dark":
+    name: "软黑／Pastel Dark"
+    author: 一团、Mintimate
+    # 拼音串
+    text_color: 0xaaaaaa 
+    # 背景
+    back_color: 0x212121 
+    # 预选栏编号颜色
+    label_color: 0xafafaf 
+    # 边框
+    border_color: 0x161616 
+    shadow_color: 0xb4000000
+    # 注解文字
+    comment_text_color: 0xb6dcdc 
+    # 非第一候选项
+    candidate_text_color: 0xcfcfcf
+    # 拼音串高亮
+    hilited_text_color: 0x05bcfb
+    hilited_mark_color: 0x5760d0
+    # 拼音串高亮背景
+    hilited_back_color: 0x212121
+    # 第一候选项背景 
+    hilited_candidate_back_color: 0x525252
+    # 第一候选项
+    hilited_candidate_text_color: 0xdcdcb6
+    # 第一候选项编号颜色
+    hilited_candidate_label_color: 0xafafaf
+    # 第一候选项编号颜色
+    hilited_label_color: 0xffffff
+    # 注解文字高亮
+    hilited_comment_text_color: 0xffffff
+
+themes:
+  wrapped:
+    inline_preedit: true
+    horizontal: false
+    preedit_type: composition
     layout:
       min_width: 100
       border_width: 1
@@ -20,35 +58,39 @@ patch:
       margin_y: 4
       # baseline: 125
       # linespacing: 165
-
-  "preset_color_schemes/pastel_dark":
-    name: "软黑／Pastel Dark"
-    author: 一团、Mintimate
-    # 拼音串
-    text_color: 0x6495ed 
-    # 背景
-    back_color: 0x212121 
-    # 预选栏编号颜色
-    label_color: 0xafafaf 
-    # 边框
-    border_color: 0x161616 
-    shadow_color: 0xb4000000
-    # 注解文字
-    comment_text_color: 0xb6dcdc 
-    # 非第一候选项
-    candidate_text_color: 0xcfcfcf
-    # 拼音串高亮
-    hilited_text_color: 0x525252
-    hilited_mark_color: 0x5760d0
-    # 拼音串高亮背景
-    hilited_back_color: 0x424242
-    # 第一候选项背景 
-    hilited_candidate_back_color: 0x525252
-    # 第一候选项
-    hilited_candidate_text_color: 0xdcdcb6
-    # 第一候选项编号颜色
-    hilited_candidate_label_color: 0xafafaf
-    # 第一候选项编号颜色
-    hilited_label_color: 0xffffff
-    # 注解文字高亮
-    hilited_comment_text_color: 0xffffff
+  independent:
+    horizontal: false
+    inline_preedit: false
+    preedit_type: composition
+    layout:
+      min_width: 100
+      border_width: 1
+      hilite_spacing: 6
+      hilite_padding: 4
+      hilite_padding_x: 2
+      hilite_padding_y: 4
+      hilited_corner_radius: 5
+      candidate_spacing: 2
+      shadow_radius: 3
+      shadow_offset_x: 1
+      shadow_offset_y: 1
+      margin_x: 8
+      margin_y: 10
+  independent_thin:
+    horizontal: false
+    inline_preedit: false
+    preedit_type: composition
+    layout:
+      min_width: 100
+      border_width: 1
+      hilite_spacing: 6
+      hilite_padding: 4
+      hilite_padding_x: 12
+      hilite_padding_y: 4
+      hilited_corner_radius: 5
+      candidate_spacing: 2
+      shadow_radius: 3
+      shadow_offset_x: 1
+      shadow_offset_y: 1
+      margin_x: 0
+      margin_y: 0

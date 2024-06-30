@@ -72,9 +72,6 @@ $ime_files_map = [ordered]@{
 if ($Gitignore) {
   $gitignore_template = Get-Content .\.gitignore.template
   $gitignore_content = $gitignore_template
-  # foreach ($files in $ime_files_map.Values) {
-  #   $gitignore_content += "`n" + (($files) -join "`n")
-  # }
   foreach ($f in $ime_files_map.GetEnumerator()) {
     $gitignore_content += "`n# Generated from $($f.Key)"
     foreach ($file in $f.Value) {
