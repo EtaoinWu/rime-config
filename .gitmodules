@@ -8,5 +8,5 @@
 	shallow = true
 [submodule "rime-lua-aux-code"]
 	path = rime-lua-aux-code
-	url = https://github.com/HowcanoeWang/rime-lua-aux-code.git
+	url = https://github.com/EtaoinWu/rime-lua-aux-code.git
 	shallow = true

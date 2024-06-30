@@ -3,12 +3,24 @@ patch:
   engine/filters/+:
     - lua_filter@*aux_code@ZRM_Aux-code_4.3
   switches/@3/reset: 0
+  switches/+:
+    - name: aux_code_nonmatch_policy
+      reset: 0
+      states: ["筛选", "优先"]
+    - options: [aux_code_hint_always, aux_code_hint_on_trigger, aux_code_hint_never]
+      reset: 1
+      states: ["辅码显示", "辅码按需", "辅码隐藏"]
+      abbrev: ["显", "需", "隐"]
   key_binder/bindings/+:
     - {accept: Tab, send_sequence: "{End};", when: composing}
   aux_code:
-    avoid_prefixes: # 对应 /recognizer/patterns
-      - "V" # symbols
-      - "uU" # 部件拆字
-      - "U" # Unicode
-      - "R" # 数字金额
-      - "N" # 农历
+    # ignore_prefixes: # 对应 /recognizer/patterns
+    #   - "V" # symbols
+    #   - "uU" # 部件拆字
+    #   - "U" # Unicode
+    #   - "R" # 数字金额
+    #   - "N" # 农历
+    ignore_regex: "^(V|uU|U|R|N)"
+    show_auxcode_hint: option
+    nonmatch_policy: option
+

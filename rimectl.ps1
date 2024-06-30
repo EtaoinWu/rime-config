@@ -13,6 +13,8 @@ if (-not (Test-Path $weasel_path)) {
   exit
 }
 
+$patch_files = Get-ChildItem -Path '.\patch' | ForEach-Object { $_.Name }
+
 $ime_files_map = [ordered]@{
   "rime-ice" = @(
     "default.yaml",
@@ -63,10 +65,7 @@ $ime_files_map = [ordered]@{
   "rime-lua-aux-code" = @(
     "lua"
   );
-  "patch" = @(
-    "lua",
-    "rime_ice.dict.yaml"
-  );
+  "patch" = $patch_files;
 }
 
 if ($Gitignore) {
