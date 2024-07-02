@@ -2,6 +2,7 @@ build/
 *.old
 *.userdb
 
+installation.yaml
 user.yaml
 
 # Generated from rime-ice
