@@ -4,7 +4,8 @@ Param(
   [alias("u")][switch]$Update,
   [alias("d")][switch]$Deploy,
   [alias("gi")][switch]$Gitignore,
-  [alias("pf")][switch]$PrintFiles
+  [alias("pf")][switch]$PrintFiles,
+  [alias("s")][switch]$Sync
 )
 
 $weasel_path = "C:\Program Files (x86)\Rime\weasel-0.16.1"
@@ -115,4 +116,8 @@ if ($PrintFiles) {
 
 if ($Deploy) {
   & "$weasel_path\WeaselDeployer.exe" /deploy
+}
+
+if ($Sync) {
+  & "$weasel_path\WeaselDeployer.exe" /sync
 }
