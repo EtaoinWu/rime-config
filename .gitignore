@@ -51,4 +51,5 @@ user.yaml
 /lua
 
 # Generated from patch
+/lua
 /rime_ice.dict.yaml

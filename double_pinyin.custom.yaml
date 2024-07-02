@@ -1,8 +1,20 @@
 patch:
   speller/alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA`;
-  engine/filters/+:
-    - lua_filter@*aux_code@ZRM_Aux-code_4.3
+
+  # disable lua_filter@corrector
+  engine/filters/@0: lua_filter@*do_nothing_filter
+  translator/+:
+    spelling_hints: 0
+    always_show_comments: false
+    comment_format: []
+
+  # replace lua_filter@search with lua_filter@*aux_code
+  engine/filters/@7: lua_filter@*aux_code@ZRM_Aux-code_4.3
   switches/@3/reset: 0
+  switches/@5/+: 
+    name: aux_code_single_char
+    states: [全词, 单字]
+    reset: 1
   switches/+:
     - name: aux_code_nonmatch_policy
       reset: 0
@@ -23,4 +35,4 @@ patch:
     ignore_regex: "^(V|uU|U|R|N)"
     show_auxcode_hint: option
     nonmatch_policy: option
-
+    filter_mode: option
