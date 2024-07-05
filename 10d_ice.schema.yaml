@@ -1,0 +1,306 @@
+# Rime schema
+# encoding: utf-8
+
+
+# 方案说明
+schema:
+  schema_id: 10d_ice
+  name: 十指并击・雾凇拼音
+  version: "2024-06-30"
+  author:
+    - Dvel
+    - Etaoin
+  description: |
+    雾凇拼音
+    https://github.com/iDvel/rime-ice
+  # dependencies:
+
+
+# 开关
+# reset: 默认状态。注释掉后，切换窗口时不会重置到默认状态。
+# states: 方案选单显示的名称。可以注释掉，仍可以通过快捷键切换。
+# abbrev: 默认的缩写取 states 的第一个字符，abbrev 可自定义一个字符
+switches:
+  - name: ascii_mode
+    states: [ 中, Ａ ]
+  - name: ascii_punct  # 中英标点
+    states: [ ¥, $ ]
+  - name: traditionalization
+    states: [ 简, 繁 ]
+  - name: emoji
+    states: [ 💀, 😄 ]
+    reset: 1
+  - name: full_shape
+    states: [ 半角, 全角 ]
+  - name: aux_code_single_char
+    states: [全词, 单字]
+    reset: 1
+  - name: aux_code_nonmatch_policy
+    reset: 0
+    states: ["筛选", "优先"]
+  - options: [aux_code_hint_always, aux_code_hint_on_trigger, aux_code_hint_never]
+    reset: 1
+    states: ["辅码显示", "辅码按需", "辅码隐藏"]
+    abbrev: ["显", "需", "隐"]
+
+
+
+# 输入引擎
+engine:
+  processors:
+    - lua_processor@select_character          # 以词定字
+    - ascii_composer
+    - recognizer
+    - chord_composer
+    - key_binder
+    - speller
+    - punctuator
+    - selector
+    - navigator
+    - lua_processor@*back_syllable_processor  # 退格
+    - express_editor
+  segmentors:
+    - ascii_segmentor
+    - matcher
+    - abc_segmentor
+    - punct_segmentor
+    - fallback_segmentor
+  translators:
+    - punct_translator
+    - script_translator
+    - table_translator@custom_phrase    # 自定义短语 custom_phrase.txt
+    - lua_translator@force_gc           # 暴力 GC
+  filters:
+    - simplifier@traditionalize                     # 简繁切换
+    - uniquifier                                    # 去重
+    - lua_filter@*aux_code@ZRM_Aux-code_4.3         # 辅码
+
+chord_composer:
+  alphabet: ' c,qwervmiop[tubn'
+  algebra:
+    # 先將物理按鍵字符對應到10dpy鍵位中的拼音字母
+    - 'xlit| c,qwervmiop[tubn|#@!ZHGDYWAEUNFXỴẈ|'
+
+    # 功能区
+    - xform/^(F|X|FX)$/*/
+    - xform/^ZHGDYW$/取消/
+
+    # 选字
+    - xform/^#Z$/选字1/
+    - xform/^#H$/选字2/
+    - xform/^#G$/选字3/
+    - xform/^#D$/选字4/
+    - xform/^#A$/选字6/
+    - xform/^#E$/选字7/
+    - xform/^#U$/选字8/
+    - xform/^#N$/选字9/
+    - xform/^#Y$/选字0/
+    - xform/^#Ỵ$/选字5/
+    - xform/^Ỵ$/,/
+    - xform/^Ẉ$/./
+
+
+    # ⟨er⟩自成音節
+    - xform/^ZGYWEN$/er/
+    # 声母
+    - xform/^ZHGD/b/
+    - xform/^ZGD/p/
+    - xform/^ZD/m/
+    - xform/^ZHD/f/
+    - xform/^D/d/
+    - xform/^ZHG/t/
+    - xform/^ZG/n/
+    - xform/^HD/l/
+    - xform/^ZH/r/
+    - xform/^Z/zh/
+    - xform/^HGD/ch/
+    - xform/^GD/sh/
+    - xform/^G/g/
+    - xform/^HG/k/
+    - xform/^H/h/
+    # 声母：jqx 组
+    - xform/^gY/jY/
+    - xform/^kY/qY/
+    - xform/^hY/xY/
+    # 声母：平舌音
+    - xform/^([zcs])hY/$1/
+
+    # 韵母
+    #   -ng: -UN
+    - xform/AUN$/ang/
+    - xform/AEUN$/ong/
+    - xform/YUN$/ing/
+    - xform/UN$/eng/
+    #   -i: -EN
+    - xform/AEN$/ai/
+    - xform/EN$/ei/
+    #   -n: -N
+    - xform/AN$/an/
+    - xform/YN$/in/
+    - xform/YWN$/ün/
+    - xform/N$/en/
+    #   -o/-u: -U
+    - xform/AU$/ao/
+    - xform/EU$/ou/
+    #   零韵尾
+    - xform/A$/a/
+    - xform/AE$/o/
+    - xform/E$/e/
+
+    #   韵腹
+    - xform/YW/ü/
+    - xform/Y/i/
+    - xform/W/u/
+
+    # 拼写：零声母
+    - xform/^i(ng?)$/yi$1/
+    - xform/^i$/yi/
+    - xform/^i/y/
+    - xform/^u$/wu/
+    - xform/^u/w/
+    - xform/^ü$/yü/
+    - xform/^ü/yü/
+
+    # 拼写：
+    - xform/([wu])e$/$1o/
+    - xform/uei$/ui/
+    - xform/iou$/iu/
+    - xform/uen$/un/
+    - xform/^([jqxy])ü/$1u/
+    - xform/ü/v/
+
+    # 零韵母速码
+    - xform/^([bpf])$/$1u/
+    - xform/^([mdtnlgkh])$/$1e/
+    - xform/^([zcsr]h?)$/$1i/
+
+    # 辅码
+    - xform/^([bpmfdtnlgkhzcsryw])U$/辅码$1/
+    - xform/^zhU$/辅码v/
+    - xform/^chU$/辅码i/
+    - xform/^shU$/辅码u/
+    - xform/^([jqx])iU$/辅码$1/
+    - xform/^yuU$/辅码a/
+    - xform/^xuU$/辅码o/
+    - xform/^nvU$/辅码e/
+  # 並擊完成後套用的式樣
+  output_format:
+    # 追加隔音符號
+    - "xform/^([bpm])([iu]|a|i?e|o|[ae]i|i?ao|[oi]u|i?an|[ie]n|[ei]ng|ang|ong)$/$1$2'/"
+    - "xform/^([fw])(u|a|o|[ae]i|ao|ou|an|en|eng|ang|ong)$/$1$2'/"
+    - "xform/^([dt])([iu]|i?a|i?e|uo|[aeu]i|i?ao|[oi]u|[iu]?an|[ue]n|[ei]ng|ang|ong)$/$1$2'/"
+    - "xform/^([nl])([iuv]|i?a|[iv]?e|u?o|[aeu]i|i?ao|[oi]u|[iu]?an|[iue]n|[ei]ng|i?ang|ong)$/$1$2'/"
+    - "xform/^([gkh])(u|u?a|e|uo|u?ai|[ue]i|ao|ou|u?an|[ue]n|eng|u?ang|ong)$/$1$2'/"
+    - "xform/^([zcs]h?|r)([iu]|u?a|e|uo|u?ai|[ue]i|ao|ou|u?an|[ue]n|eng|u?ang|ong)$/$1$2'/"
+    - "xform/^([jqxy])([iu]|i?a|[iu]?e|o|i?ao|[oi]u|[iu]?an|[iu]n|ing|i?ang|i?ong)$/$1$2'/"
+    - "xform/^([aeo]|[ae]i|ao|ou|[ae]ng?|er)$/$1'/"
+    # 消除不構成合法音節的並擊組合
+    - "erase/^([A-Za-z]+)$/"
+    - 'xform/^\*+$/{BackSpace}/'
+    - 'xform/^#$/ /'
+    - 'xform/^选字([1-7])$/$1/'
+    - 'xform/^辅码([a-z])$/;$1/'
+    - 'xform/^取消$/{Escape}/'
+    - 'erase/^.*[ỴẈ].*$/'
+  # 並擊過程中套用的式樣
+  prompt_format:
+    # 加方括弧
+    - 'xform/^(.*)$/[$1]/'
+
+editor:
+  bindings:
+    BackSpace: back_syllable_delimited
+
+# 拼写设定
+speller:
+  # 如果不想让什么标点直接上屏，可以加在 alphabet，或者编辑标点符号为两个及以上的映射
+  alphabet: "zyxwvutsrqponmlkjihgfedcba';"
+  initials: zyxwvutsrqponmlkjihgfedcba
+  delimiter: " "
+  syllable_begin: ";"
+  syllable_end: "'"
+  algebra:
+    ### v u 转换
+    # 雾凇的词库严格按照正确的 u v(ü) 注音的，支持使用 qu/qv nue/nve 来输入 qu nve
+    - derive/^([nl])ve$/$1ue/
+    - derive/^([jqxy])u/$1v/
+    # 以防引入的其他词库没按照正确方式注音，也做一个转换
+    - derive/^([nl])ue$/$1ve/
+    - derive/^([jqxy])v/$1u/
+    # 拼音音節一律後加隔音符號，避免音節切分歧義
+    - "xform/^([a-z]+)$/$1'/"
+
+
+# 主翻译器，拼音
+translator:
+  dictionary: rime_ice        # 挂载词库 rime_ice.dict.yaml
+  prism: 10d_ice
+  initial_quality: 1.2        # 拼音的权重应该比英文大
+  preedit_format:             # preedit_format 影响到输入框的显示和“Shift+回车”上屏的字符
+    - xform/([jqxy])v/$1u/    # 显示为 ju qu xu yu
+    - xform/([nl])v/$1ü/    # 显示为 nü lü
+    - xform/([nl])ue/$1üe/  # 显示为 nüe lüe
+    # - xform/([nl])v/$1v/      # 显示为 nv lv
+    # - xform/([nl])ue/$1ve/    # 显示为 nve lve
+    - "xform/' / /"
+    - "xform/'$//"
+
+
+# 自定义短语：custom_phrase.txt
+custom_phrase:
+  dictionary: ""
+  user_dict: custom_phrase  # 可以修改这里，改成自己的 txt 文件
+  db_class: stabledb        # 只读数据库，无法动态调频；设为 tabledb 可以动态调频
+  enable_completion: false  # 补全提示
+  enable_sentence: false    # 禁止造句
+  initial_quality: 99       # custom_phrase 的权重应该比 pinyin 和 melt_eng 大
+
+
+# 简繁切换
+traditionalize:
+  option_name: traditionalization
+  opencc_config: s2t.json  # s2t.json | s2hk.json | s2tw.json | s2twp.json
+  tips: none               # 转换提示: all 都显示 | char 仅单字显示 | none 不显示。
+  tags: [ abc, number, gregorian_to_lunar ]  # 限制在对应 tag，不对其他如反查的内容做简繁转换
+
+
+# 标点符号
+# punctuator 下面有三个子项：
+#   full_shape 全角标点映射
+#   half_shape 半角标点映射
+#   symbols    Rime 的预设配置是以 '/' 前缀开头输出一系列字符，自定义的 symbols_v.yaml 修改成了 'v' 开头。
+punctuator:
+  full_shape:
+    __include: default:/punctuator/full_shape  # 从 default.yaml 导入配置
+  half_shape:
+    __include: default:/punctuator/half_shape  # 从 default.yaml 导入配置
+  symbols:
+    __include: symbols_v:/symbols              # 从 symbols_v.yaml 导入配置
+
+
+# 处理符合特定规则的输入码，如网址、反查
+recognizer:
+  import_preset: default  # 从 default.yaml 继承通用的
+  patterns:  # 再增加方案专有的：
+    punct: "^v([0-9]|10|[A-Za-z]+)$"    # 响应 symbols_v.yaml 的 symbols，用 'v' 替换 '/'
+
+
+# 从 default 继承快捷键
+key_binder:
+  import_preset: default
+  bindings:
+    - {accept: Tab, send_sequence: "{End};", when: composing}
+
+
+aux_code:
+  # ignore_prefixes: # 对应 /recognizer/patterns
+  #   - "V" # symbols
+  #   - "uU" # 部件拆字
+  #   - "U" # Unicode
+  #   - "R" # 数字金额
+  #   - "N" # 农历
+  ignore_regex: "^(V|uU|U|R|N)"
+  show_auxcode_hint: option
+  nonmatch_policy: option
+  filter_mode: option
+

@@ -1,5 +1,5 @@
 patch:
-  speller/alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA`;
+  speller/alphabet: zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA;
 
   # disable lua_filter@corrector
   engine/filters/@0: lua_filter@*do_nothing_filter

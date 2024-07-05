@@ -2,15 +2,18 @@ patch:
   "menu/page_size": 7
   "switcher/fold_options": true
   "schema_list":
-    - schema: double_pinyin          # 自然码双拼
+    - schema: double_pinyin          # 自然码／雾凇
     - schema: rime_ice               # 雾凇拼音（全拼）
     - schema: moqi_zrm               # 墨奇自然码
+    - schema: 10d_ice                # 十指并击・雾凇拼音
   
   "key_binder/bindings/+":
     - { when: paging, accept: comma, send: Page_Up }
     - { when: has_menu, accept: period, send: Page_Down }
     - { when: always, toggle: traditionalization, accept: Control+Shift+F }  # 切换简繁
     - { when: always, toggle: traditionalization, accept: Control+Shift+f }  # 切换简繁
+    - { when: always, select: .next, accept: Control+Shift+apostrophe }      # 在最近的两个方案之间切换
+    - { when: always, select: .next, accept: Control+Shift+quotedbl }        # 在最近的两个方案之间切换
 
   "punctuator/half_shape/+":
     '{' : '【'
