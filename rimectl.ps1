@@ -8,8 +8,8 @@ Param(
   [alias("s")][switch]$Sync
 )
 
-$weasel_path = "C:\Program Files (x86)\Rime\weasel-0.16.1"
-if (-not (Test-Path $weasel_path)) {
+$weasel_path = $env:WEASEL_PATH
+if (-not (Test-Path $weasel_path) -or -not (Test-Path "$weasel_path\WeaselDeployer.exe")) {
   Write-Output "Weasel not found at $weasel_path"
   exit
 }

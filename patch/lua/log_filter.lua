@@ -3,7 +3,7 @@ local Logger = require("logger")
 local log_filter = {}
 
 function log_filter.init(env)
-    env.logger = Logger:new("C:\\Users\\etaoi\\Desktop\\qwqlog.txt", "log_filter")
+    env.logger = Logger:new("log_filter_log.txt", "log_filter")
     env.logger:info("log_filter init")
 end
 

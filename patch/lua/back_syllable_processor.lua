@@ -1,7 +1,7 @@
 local backSyllableProcessor = {}
 
 local Logger = require("logger")
-local log = Logger.new_dummy("C:\\Users\\etaoi\\Desktop\\rime.log", "back_syllable_processor", "INFO")
+local log = Logger.new_dummy("rime.log", "back_syllable_processor", "INFO")
 
 log:info("Loading back syllable processor...")
 
