@@ -10,3 +10,7 @@
 	path = rime-lua-aux-code
 	url = https://github.com/EtaoinWu/rime-lua-aux-code.git
 	shallow = true
+[submodule "rime-frost"]
+	path = rime-frost
+	url = https://github.com/gaboolic/rime-frost.git
+	shallow = true

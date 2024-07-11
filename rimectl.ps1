@@ -24,7 +24,7 @@ $ime_files_map = [ordered]@{
     "melt_eng.schema.yaml",
     "radical_pinyin.dict.yaml",
     "radical_pinyin.schema.yaml",
-    "rime_ice.dict.yaml",
+    # "rime_ice.dict.yaml", # overridden in rime-frost
     "rime_ice.schema.yaml",
     "rime.lua",
     "symbols_caps_v.yaml",
@@ -35,6 +35,12 @@ $ime_files_map = [ordered]@{
     "en_dicts",
     "lua",
     "opencc"
+  );
+  "rime-frost" = @(
+    "rime_ice.dict.yaml",
+
+    "cn_dicts",
+    "en_dicts"
   );
   "rime-moqi" = @(
     "moqi_zrm.schema.yaml",

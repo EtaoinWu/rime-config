@@ -1,6 +1,11 @@
 patch:
   "menu/page_size": 7
-  "switcher/fold_options": true
+  "switcher/+": 
+    fold_options: true
+    hotkeys:
+      - Control+grave
+      - Control+Shift+grave
+    
   "schema_list":
     - schema: double_pinyin          # 自然码／雾凇
     - schema: rime_ice               # 雾凇拼音（全拼）

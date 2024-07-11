@@ -12,7 +12,6 @@ user.yaml
 /melt_eng.schema.yaml
 /radical_pinyin.dict.yaml
 /radical_pinyin.schema.yaml
-/rime_ice.dict.yaml
 /rime_ice.schema.yaml
 /rime.lua
 /symbols_caps_v.yaml
@@ -22,6 +21,11 @@ user.yaml
 /en_dicts
 /lua
 /opencc
+
+# Generated from rime-frost
+/rime_ice.dict.yaml
+/cn_dicts
+/en_dicts
 
 # Generated from rime-moqi
 /moqi_zrm.schema.yaml
