@@ -5,14 +5,15 @@ build/
 installation.yaml
 user.yaml
 
-# Generated from rime-ice
+# Generated from rime-frost
 /default.yaml
 /double_pinyin.schema.yaml
 /melt_eng.dict.yaml
 /melt_eng.schema.yaml
 /radical_pinyin.dict.yaml
 /radical_pinyin.schema.yaml
-/rime_ice.schema.yaml
+/rime_frost.dict.yaml
+/rime_frost.schema.yaml
 /rime.lua
 /symbols_caps_v.yaml
 /symbols_v.yaml
@@ -21,11 +22,6 @@ user.yaml
 /en_dicts
 /lua
 /opencc
-
-# Generated from rime-frost
-/rime_ice.dict.yaml
-/cn_dicts
-/en_dicts
 
 # Generated from rime-moqi
 /moqi_zrm.schema.yaml
@@ -56,4 +52,4 @@ user.yaml
 
 # Generated from patch
 /lua
-/rime_ice.dict.yaml
+/rime_frost.dict.yaml

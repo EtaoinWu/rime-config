@@ -7,10 +7,10 @@ patch:
       - Control+Shift+grave
     
   "schema_list":
-    - schema: double_pinyin          # 自然码／雾凇
-    - schema: rime_ice               # 雾凇拼音（全拼）
+    - schema: double_pinyin          # 自然码／白霜
+    - schema: rime_frost             # 白霜拼音（全拼）
     - schema: moqi_zrm               # 墨奇自然码
-    - schema: 10d_ice                # 十指并击・雾凇拼音
+    - schema: 10d_frost              # 十指并击・白霜拼音
   
   "key_binder/bindings/+":
     - { when: paging, accept: comma, send: Page_Up }
@@ -19,6 +19,8 @@ patch:
     - { when: always, toggle: traditionalization, accept: Control+Shift+f }  # 切换简繁
     - { when: always, select: .next, accept: Control+Shift+apostrophe }      # 在最近的两个方案之间切换
     - { when: always, select: .next, accept: Control+Shift+quotedbl }        # 在最近的两个方案之间切换
+    - { when: always, select: .next, accept: Control+Shift+semicolon }       # 在最近的两个方案之间切换
+    - { when: always, select: .next, accept: Control+Shift+colon }           # 在最近的两个方案之间切换
 
   "punctuator/half_shape/+":
     '{' : '【'

@@ -2,11 +2,11 @@
 # encoding: utf-8
 
 ---
-name: rime_ice
+name: rime_frost
 version: "2023-11-13"
 import_tables:
   - cn_dicts/8105     # 字表
-  - cn_dicts/41448  # 大字表（按需启用）
+  - cn_dicts/41448    # 大字表（按需启用）
   - cn_dicts/base     # 基础词库
   - cn_dicts/ext      # 扩展词库
   - cn_dicts/tencent  # 腾讯词向量（大词库，部署时间较长）
@@ -84,6 +84,7 @@ M2
 M3
 M4
 M4A1
+A宝
 
 
 # 加入词典，响应 opencc/others.txt 的 emoji 集合

@@ -4,16 +4,16 @@
 
 # 方案说明
 schema:
-  schema_id: 10d_ice
-  name: 十指并击・雾凇拼音
+  schema_id: 10d_frost
+  name: 十指并击・白霜拼音
   version: "2024-06-30"
   author:
     - Dvel
     - Etaoin
   description: |
-    雾凇拼音
-    https://github.com/iDvel/rime-ice
-  # dependencies:
+    白霜拼音 + 10dpy 并击方案
+  dependencies:
+    - rime_frost
 
 
 # 开关
@@ -50,8 +50,8 @@ engine:
   processors:
     - lua_processor@select_character          # 以词定字
     - ascii_composer
-    - recognizer
     - chord_composer
+    - recognizer
     - key_binder
     - speller
     - punctuator
@@ -76,113 +76,113 @@ engine:
     - lua_filter@*aux_code@ZRM_Aux-code_4.3         # 辅码
 
 chord_composer:
-  alphabet: ' c,qwervmiop[tubn'
+  alphabet: ' qwer{F15}{F16}uiopty'
   algebra:
     # 先將物理按鍵字符對應到10dpy鍵位中的拼音字母
-    - 'xlit| c,qwervmiop[tubn|#@!ZHGDYWAEUNFXỴẈ|'
+    - xform/{F15}/Y/
+    - xform/{F16}/W/
+    - 'xlit|qwertyuiop|ZHGDSTAEUN|'
 
     # 功能区
-    - xform/^(F|X|FX)$/*/
+    - xform/^ W$/⬚/
+    - xform/^ $/⬚/
+    - xform/^ //
+    - xform/^(S|T|ST)$/⌫/
     - xform/^ZHGDYW$/取消/
 
-    # 选字
-    - xform/^#Z$/选字1/
-    - xform/^#H$/选字2/
-    - xform/^#G$/选字3/
-    - xform/^#D$/选字4/
-    - xform/^#A$/选字6/
-    - xform/^#E$/选字7/
-    - xform/^#U$/选字8/
-    - xform/^#N$/选字9/
-    - xform/^#Y$/选字0/
-    - xform/^#Ỵ$/选字5/
-    - xform/^Ỵ$/,/
-    - xform/^Ẉ$/./
-
-
+    # 译为全拼
+    - xform/^(Z?H?G?D?Y?W?A?E?U?N?)$/全$1拼/
     # ⟨er⟩自成音節
-    - xform/^ZGYWEN$/er/
+    - xform/^全ZGYWEN拼$/er/
     # 声母
-    - xform/^ZHGD/b/
-    - xform/^ZGD/p/
-    - xform/^ZD/m/
-    - xform/^ZHD/f/
-    - xform/^D/d/
-    - xform/^ZHG/t/
-    - xform/^ZG/n/
-    - xform/^HD/l/
-    - xform/^ZH/r/
-    - xform/^Z/zh/
-    - xform/^HGD/ch/
-    - xform/^GD/sh/
-    - xform/^G/g/
-    - xform/^HG/k/
-    - xform/^H/h/
+    - xform/^全ZHGD/全b/
+    - xform/^全ZGD/全p/
+    - xform/^全ZD/全m/
+    - xform/^全ZHD/全f/
+    - xform/^全D/全d/
+    - xform/^全ZHG/全t/
+    - xform/^全ZG/全n/
+    - xform/^全HD/全l/
+    - xform/^全ZH/全r/
+    - xform/^全Z/全zh/
+    - xform/^全HGD/全ch/
+    - xform/^全GD/全sh/
+    - xform/^全G/全g/
+    - xform/^全HG/全k/
+    - xform/^全H/全h/
     # 声母：jqx 组
-    - xform/^gY/jY/
-    - xform/^kY/qY/
-    - xform/^hY/xY/
+    - xform/^全gY/全jY/
+    - xform/^全kY/全qY/
+    - xform/^全hY/全xY/
     # 声母：平舌音
-    - xform/^([zcs])hY/$1/
+    - xform/^全([zcs])hY/全$1/
 
     # 韵母
     #   -ng: -UN
-    - xform/AUN$/ang/
-    - xform/AEUN$/ong/
-    - xform/YUN$/ing/
-    - xform/UN$/eng/
+    - xform/AUN拼$/ang拼/
+    - xform/AEUN拼$/ong拼/
+    - xform/YUN拼$/ing拼/
+    - xform/UN拼$/eng拼/
     #   -i: -EN
-    - xform/AEN$/ai/
-    - xform/EN$/ei/
+    - xform/AEU拼$/ai拼/
+    - xform/AEN拼$/ai拼/
+    # - xform/EUN拼$/ei拼/
+    - xform/Eeng拼$/ei拼/
+    - xform/EN拼$/ei拼/
     #   -n: -N
-    - xform/AN$/an/
-    - xform/YN$/in/
-    - xform/YWN$/ün/
-    - xform/N$/en/
+    - xform/AN拼$/an拼/
+    - xform/YN拼$/in拼/
+    - xform/YWN拼$/ün拼/
+    - xform/N拼$/en拼/
     #   -o/-u: -U
-    - xform/AU$/ao/
-    - xform/EU$/ou/
+    - xform/AU拼$/ao拼/
+    - xform/EU拼$/ou拼/
     #   零韵尾
-    - xform/A$/a/
-    - xform/AE$/o/
-    - xform/E$/e/
+    - xform/A拼$/a拼/
+    - xform/AE拼$/o拼/
+    - xform/E拼$/e拼/
 
     #   韵腹
-    - xform/YW/ü/
-    - xform/Y/i/
-    - xform/W/u/
+    - xform/全(.*)YW(.*)拼/全$1ü$2拼/
+    - xform/全(.*)Y(.*)拼/全$1i$2拼/
+    - xform/全(.*)W(.*)拼/全$1u$2拼/
 
     # 拼写：零声母
-    - xform/^i(ng?)$/yi$1/
-    - xform/^i$/yi/
-    - xform/^i/y/
-    - xform/^u$/wu/
-    - xform/^u/w/
-    - xform/^ü$/yü/
-    - xform/^ü/yü/
+    - xform/^全i(ng?)拼$/全yi$1拼/
+    - xform/^全i拼$/全yi拼/
+    - xform/^全i/全y/
+    - xform/^全u拼$/全wu拼/
+    - xform/^全u/全w/
+    - xform/^全ü拼$/全yü拼/
+    - xform/^全ü/全yü/
 
     # 拼写：
-    - xform/([wu])e$/$1o/
-    - xform/uei$/ui/
-    - xform/iou$/iu/
-    - xform/uen$/un/
-    - xform/^([jqxy])ü/$1u/
-    - xform/ü/v/
+    - xform/([wu])e拼$/$1o拼/
+    - xform/uei拼$/ui拼/
+    - xform/iou拼$/iu拼/
+    - xform/uen拼$/un拼/
+    - xform/^全([jqxy])ü/全$1u/
+    - xform/^全(.+)ü/全$1v/
 
     # 零韵母速码
-    - xform/^([bpf])$/$1u/
-    - xform/^([mdtnlgkh])$/$1e/
-    - xform/^([zcsr]h?)$/$1i/
+    - xform/^全([bpf])拼$/全$1u拼/
+    - xform/^全([mdtnlgkh])拼$/全$1e拼/
+    - xform/^全([zcsr]h?)拼$/全$1i拼/
 
     # 辅码
-    - xform/^([bpmfdtnlgkhzcsryw])U$/辅码$1/
-    - xform/^zhU$/辅码v/
-    - xform/^chU$/辅码i/
-    - xform/^shU$/辅码u/
-    - xform/^([jqx])iU$/辅码$1/
-    - xform/^yuU$/辅码a/
-    - xform/^xuU$/辅码o/
-    - xform/^nvU$/辅码e/
+    - xform/^全([bpmfdtnlgkhzcsryw])U拼$/辅码$1/
+    - xform/^全zhU拼$/辅码v/
+    - xform/^全chU拼$/辅码i/
+    - xform/^全shU拼$/辅码u/
+    - xform/^全([jqx])iU拼$/辅码$1/
+    - xform/^全yuU拼$/辅码a/
+    - xform/^全xuU拼$/辅码o/
+    - xform/^全nvU拼$/辅码e/
+
+    - xform/^全U拼$/全wu拼/
+
+    - xform/^全(.*)拼$/$1/
+
   # 並擊完成後套用的式樣
   output_format:
     # 追加隔音符號
@@ -196,16 +196,16 @@ chord_composer:
     - "xform/^([aeo]|[ae]i|ao|ou|[ae]ng?|er)$/$1'/"
     # 消除不構成合法音節的並擊組合
     - "erase/^([A-Za-z]+)$/"
-    - 'xform/^\*+$/{BackSpace}/'
-    - 'xform/^#$/ /'
-    - 'xform/^选字([1-7])$/$1/'
+
+    - 'xform/⌫/{BackSpace}/'
+    - 'xform/⬚/ /'
     - 'xform/^辅码([a-z])$/;$1/'
-    - 'xform/^取消$/{Escape}/'
-    - 'erase/^.*[ỴẈ].*$/'
   # 並擊過程中套用的式樣
   prompt_format:
     # 加方括弧
     - 'xform/^(.*)$/[$1]/'
+    - 'xform/^\[辅码(.*)\]$/辅 [$1]/'
+    - 'xform/^\[(⌫|⌦|⇥|↵|⎋)\]$/$1/'
 
 editor:
   bindings:
@@ -233,13 +233,13 @@ speller:
 
 # 主翻译器，拼音
 translator:
-  dictionary: rime_ice        # 挂载词库 rime_ice.dict.yaml
-  prism: 10d_ice
+  dictionary: rime_frost      # 挂载词库 rime_frost.dict.yaml
+  prism: 10d_frost
   initial_quality: 1.2        # 拼音的权重应该比英文大
   preedit_format:             # preedit_format 影响到输入框的显示和“Shift+回车”上屏的字符
     - xform/([jqxy])v/$1u/    # 显示为 ju qu xu yu
-    - xform/([nl])v/$1ü/    # 显示为 nü lü
-    - xform/([nl])ue/$1üe/  # 显示为 nüe lüe
+    - xform/([nl])v/$1ü/      # 显示为 nü lü
+    - xform/([nl])ue/$1üe/    # 显示为 nüe lüe
     # - xform/([nl])v/$1v/      # 显示为 nv lv
     # - xform/([nl])ue/$1ve/    # 显示为 nve lve
     - "xform/' / /"
@@ -290,6 +290,8 @@ key_binder:
   import_preset: default
   bindings:
     - {accept: Tab, send_sequence: "{End};", when: composing}
+  select_first_character: 'm'
+  select_last_character: '/'
 
 
 aux_code:
