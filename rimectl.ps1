@@ -46,42 +46,43 @@ $ime_files_map = [ordered]@{
     "rime_frost.dict.yaml",
     "rime_frost.schema.yaml",
     "rime.lua",
-    "symbols_caps_v.yaml",
     "symbols_v.yaml",
     "weasel.yaml",
 
     "cn_dicts",
+    "cn_dicts_cell",
     "en_dicts",
     "lua",
     "opencc"
   );
-  "rime-moqi" = @(
-    "moqi_zrm.schema.yaml",
-    "moqi.yaml",
-    "moqi.extended.dict.yaml",
+  # "rime-moqi" = @(
+  #   "moqi_zrm.schema.yaml",
+  #   "moqi.yaml",
+  #   "moqi.extended.dict.yaml",
 
-    # moqi_zrm.dict.yaml : .schema.dependencies
-    "reverse_moqima.schema.yaml",
-    "reverse_moqima.dict.yaml",
-    "radical_flypy.schema.yaml",
-    "radical_flypy.dict.yaml",
-    "zrlf.schema.yaml",
-    "zrlf.dict.yaml",
-    "emoji.schema.yaml",
-    "emoji.dict.yaml",
-    "easy_en.schema.yaml",
-    "easy_en.dict.yaml",
-    "jp_sela.schema.yaml",
-    "jp_sela.dict.yaml",
-    "moqi_big.schema.yaml",
-    "moqi_big.extended.dict.yaml",
+  #   # moqi_zrm.dict.yaml : .schema.dependencies
+  #   "reverse_moqima.schema.yaml",
+  #   "reverse_moqima.dict.yaml",
+  #   "radical_flypy.schema.yaml",
+  #   "radical_flypy.dict.yaml",
+  #   "zrlf.schema.yaml",
+  #   "zrlf.dict.yaml",
+  #   "emoji.schema.yaml",
+  #   "emoji.dict.yaml",
+  #   "easy_en.schema.yaml",
+  #   "easy_en.dict.yaml",
+  #   "jp_sela.schema.yaml",
+  #   "jp_sela.dict.yaml",
+  #   "moqi_big.schema.yaml",
+  #   "moqi_big.extended.dict.yaml",
 
-    "cn_dicts_common",
-    "cn_dicts_moqi",
-    "custom_phrase",
-    "lua",
-    "opencc"
-  );
+  #   "cn_dicts_common",
+  #   "cn_dicts_moqi",
+  #   "cn_dicts_cell",
+  #   "custom_phrase",
+  #   "lua",
+  #   "opencc"
+  # );
   "rime-lua-aux-code" = @(
     "lua"
   );

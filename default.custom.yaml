@@ -9,7 +9,7 @@ patch:
   "schema_list":
     - schema: double_pinyin          # 自然码／白霜
     - schema: rime_frost             # 白霜拼音（全拼）
-    - schema: moqi_zrm               # 墨奇自然码
+    # - schema: moqi_zrm               # 墨奇自然码
     - schema: 10d_frost              # 十指并击・白霜拼音
   
   "key_binder/bindings/+":
