@@ -157,6 +157,8 @@ chord_composer:
     - xform/^全ü/全yü/
 
     # 拼写：
+    - xform/ueng拼$/ong拼/
+    - xform/üeng拼$/iong拼/
     - xform/([wu])e拼$/$1o拼/
     - xform/uei拼$/ui拼/
     - xform/iou拼$/iu拼/
@@ -178,6 +180,7 @@ chord_composer:
     - xform/^全yuU拼$/辅码a/
     - xform/^全xuU拼$/辅码o/
     - xform/^全nvU拼$/辅码e/
+    - xform/^全niU拼$/辅码e/
 
     - xform/^全U拼$/全wu拼/
 
@@ -249,11 +252,11 @@ translator:
 # 自定义短语：custom_phrase.txt
 custom_phrase:
   dictionary: ""
-  user_dict: custom_phrase  # 可以修改这里，改成自己的 txt 文件
-  db_class: stabledb        # 只读数据库，无法动态调频；设为 tabledb 可以动态调频
-  enable_completion: false  # 补全提示
-  enable_sentence: false    # 禁止造句
-  initial_quality: 99       # custom_phrase 的权重应该比 pinyin 和 melt_eng 大
+  user_dict: custom_phrase_10d  # 可以修改这里，改成自己的 txt 文件
+  db_class: stabledb            # 只读数据库，无法动态调频；设为 tabledb 可以动态调频
+  enable_completion: false      # 补全提示
+  enable_sentence: false        # 禁止造句
+  initial_quality: 99           # custom_phrase 的权重应该比 pinyin 和 melt_eng 大
 
 
 # 简繁切换
@@ -278,11 +281,8 @@ punctuator:
     __include: symbols_v:/symbols              # 从 symbols_v.yaml 导入配置
 
 
-# 处理符合特定规则的输入码，如网址、反查
 recognizer:
   import_preset: default  # 从 default.yaml 继承通用的
-  patterns:  # 再增加方案专有的：
-    punct: "^v([0-9]|10|[A-Za-z]+)$"    # 响应 symbols_v.yaml 的 symbols，用 'v' 替换 '/'
 
 
 # 从 default 继承快捷键
@@ -295,13 +295,6 @@ key_binder:
 
 
 aux_code:
-  # ignore_prefixes: # 对应 /recognizer/patterns
-  #   - "V" # symbols
-  #   - "uU" # 部件拆字
-  #   - "U" # Unicode
-  #   - "R" # 数字金额
-  #   - "N" # 农历
-  ignore_regex: "^(V|uU|U|R|N)"
   show_auxcode_hint: option
   nonmatch_policy: option
   filter_mode: option
