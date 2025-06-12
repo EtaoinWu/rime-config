@@ -17,37 +17,37 @@ if (-not (Test-Path $weasel_path) -or -not (Test-Path "$weasel_path\WeaselDeploy
 $patch_files = Get-ChildItem -Path '.\patch' | ForEach-Object { $_.Name }
 
 $ime_files_map = [ordered]@{
-  # "rime-ice" = @(
-  #   # "default.yaml",
-  #   # "double_pinyin.schema.yaml",
-  #   # "melt_eng.dict.yaml",
-  #   # "melt_eng.schema.yaml",
-  #   # "radical_pinyin.dict.yaml",
-  #   # "radical_pinyin.schema.yaml",
-  #   # "rime_ice.dict.yaml", # overridden in rime-frost
-  #   # "rime_ice.schema.yaml",
-  #   # "rime.lua",
-  #   # "symbols_caps_v.yaml",
-  #   # "symbols_v.yaml",
-  #   # "weasel.yaml",
+  "rime-ice" = @(
+    # "default.yaml",
+    # "double_pinyin.schema.yaml",
+    # "melt_eng.dict.yaml",
+    # "melt_eng.schema.yaml",
+    # "radical_pinyin.dict.yaml",
+    # "radical_pinyin.schema.yaml",
+    # "rime_ice.dict.yaml", # overridden in rime-frost
+    # "rime_ice.schema.yaml",
+    # "rime.lua",
+    # "symbols_caps_v.yaml",
+    # "symbols_v.yaml",
+    "weasel.yaml"
 
-  #   # "cn_dicts",
-  #   # "en_dicts",
-  #   # "lua",
-  #   # "opencc"
-  # );
+    # "cn_dicts",
+    # "en_dicts",
+    # "lua",
+    # "opencc"
+  );
   "rime-frost" = @(
     "default.yaml",
-    "double_pinyin.schema.yaml",
+    "rime_frost_double_pinyin.schema.yaml",
     "melt_eng.dict.yaml",
     "melt_eng.schema.yaml",
     "radical_pinyin.dict.yaml",
     "radical_pinyin.schema.yaml",
     "rime_frost.dict.yaml",
     "rime_frost.schema.yaml",
-    "rime.lua",
+    # "rime.lua",
     "symbols_v.yaml",
-    "weasel.yaml",
+    # "weasel.yaml",
 
     "cn_dicts",
     "cn_dicts_cell",

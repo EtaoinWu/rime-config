@@ -5,18 +5,19 @@ build/
 installation.yaml
 user.yaml
 
+# Generated from rime-ice
+/weasel.yaml
+
 # Generated from rime-frost
 /default.yaml
-/double_pinyin.schema.yaml
+/rime_frost_double_pinyin.schema.yaml
 /melt_eng.dict.yaml
 /melt_eng.schema.yaml
 /radical_pinyin.dict.yaml
 /radical_pinyin.schema.yaml
 /rime_frost.dict.yaml
 /rime_frost.schema.yaml
-/rime.lua
 /symbols_v.yaml
-/weasel.yaml
 /cn_dicts
 /cn_dicts_cell
 /en_dicts
